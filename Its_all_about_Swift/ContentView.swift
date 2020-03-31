@@ -4,7 +4,18 @@ struct ContentView: View {
     
     init(){
         // call any method from below
-        computedProperties()
+        // computedProperties()
+        //convertNumberFromString()
+    }
+    
+    func convertNumberFromString(){
+        print(String(1635999)) // returns "1635999"
+        print(String(1635999, radix: 2)) // returns "1635999"
+        String(1635999, radix: 2) // returns "110001111011010011111"
+        String(1635999, radix: 16) // returns "18f69f"
+        String(1635999, radix: 16, uppercase: true) // returns "18F69F"
+        String(1635999, radix: 17) // returns "129gf4"
+        String(1635999, radix: 36) // returns "z2cf"
     }
     
     func propertyObserver(){
