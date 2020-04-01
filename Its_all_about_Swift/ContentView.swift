@@ -12,7 +12,19 @@ struct ContentView: View {
         // callCaptureValuesFromHere()
         // callEscapingClosuresFromHere()
         // enumerations()
-         mutatingFunction()
+        // mutatingFunction()
+        memorySafety()
+    }
+    
+    var stepSize = 10
+    
+    func increment(_ number: inout Int) {
+        number += stepSize
+    }
+    
+    mutating func memorySafety(){
+        increment(&stepSize)
+        print(stepSize)
     }
     
     struct Rectangle {
