@@ -7,8 +7,19 @@ struct ContentView: View {
         // computedProperties()
         // convertNumberFromString()
         // string()
-        // closureMap
+        // closureMap()
+        let x = capturingValues(forIncrement: 50)
+        print(x(7))
         
+    }
+    
+    func capturingValues(forIncrement amount: Int) -> (_ check : Int) -> Int {
+        var runningTotal = 0
+        func incrementer(_ check : Int) -> Int {
+            runningTotal += amount
+            return runningTotal
+        }
+        return incrementer
     }
     
     func closureMap(){
