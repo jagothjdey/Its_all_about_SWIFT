@@ -8,16 +8,66 @@ struct ContentView: View {
         // convertNumberFromString()
         // string()
         // closureMap()
+        // callCaptureValuesFromHere()
+        // callEscapingClosuresFromHere()
+        enumerations()
+    }
+    
+    func enumerations(){
+        let five = ArithmeticExpression.number(5)
+        let four = ArithmeticExpression.number(4)
+        let sum = ArithmeticExpression.addition(five, four)
+        let product = ArithmeticExpression.multiplication(sum, ArithmeticExpression.number(2))
+        print(evaluate(product))
+    }
+    
+    func evaluate(_ expression: ArithmeticExpression) -> Int {
+        switch expression {
+        case let .number(value):
+            return value
+        case let .addition(left, right):
+            return evaluate(left) + evaluate(right)
+        case let .multiplication(left, right):
+            return evaluate(left) * evaluate(right)
+        }
+    }
+    
+    enum ArithmeticExpression {
+        case number(Int)
+        indirect case addition(ArithmeticExpression, ArithmeticExpression)
+        indirect case multiplication(ArithmeticExpression, ArithmeticExpression)
+    }
+    
+    enum Barcode {
+        case upc(Int, Int, Int, Int)
+        case qrCode(String)
+    }
+    
+    enum CompassPoint : String{
+        case north
+        case south
+        case east
+        case west
+    }
+    
+    func callEscapingClosuresFromHere(){
+        var completionHandlers: [() -> Void] = []
+        func someFunctionWithEscapingClosure(completionHandler: @escaping () -> Void) {
+            completionHandlers.append(completionHandler)
+            print("hd")
+        }
+    }
+
+    
+    func callCaptureValuesFromHere(){
         let incrementBySeven = capturingValues(forIncrement: 7)
         print(incrementBySeven())
         print(incrementBySeven())
-        
         let incrementByTen = capturingValues(forIncrement: 10)
         print(incrementByTen())
         print(incrementByTen())
-        
-        
     }
+    
     
     func capturingValues(forIncrement amount: Int) -> () -> Int {
         var runningTotal = 0
