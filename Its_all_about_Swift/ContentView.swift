@@ -8,14 +8,20 @@ struct ContentView: View {
         // convertNumberFromString()
         // string()
         // closureMap()
-        let x = capturingValues(forIncrement: 50)
-        print(x(7))
+        let incrementBySeven = capturingValues(forIncrement: 7)
+        print(incrementBySeven())
+        print(incrementBySeven())
+        
+        let incrementByTen = capturingValues(forIncrement: 10)
+        print(incrementByTen())
+        print(incrementByTen())
+        
         
     }
     
-    func capturingValues(forIncrement amount: Int) -> (_ check : Int) -> Int {
+    func capturingValues(forIncrement amount: Int) -> () -> Int {
         var runningTotal = 0
-        func incrementer(_ check : Int) -> Int {
+        func incrementer() -> Int {
             runningTotal += amount
             return runningTotal
         }
