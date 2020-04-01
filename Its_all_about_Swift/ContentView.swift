@@ -2,6 +2,7 @@ import SwiftUI
 import Foundation
 
 struct ContentView: View {
+    
     init(){
         // call any method from below
         // computedProperties()
@@ -10,7 +11,38 @@ struct ContentView: View {
         // closureMap()
         // callCaptureValuesFromHere()
         // callEscapingClosuresFromHere()
-        enumerations()
+        // enumerations()
+         mutatingFunction()
+    }
+    
+    struct Rectangle {
+        var width = 1
+        var height = 1
+        
+        func area() -> Int {
+            return width * height
+        }
+     
+        mutating func scaleBy(value: Int) {
+            width *= value
+            height *= value
+        }
+    }
+    
+    func mutatingFunction(){
+        var rect = Rectangle(width: 10, height: 10)
+        rect.scaleBy(value: 2)
+        print(rect.area())
+    }
+    
+    struct Stack<Element> {
+        var items = [Element]()
+        mutating func push(_ item: Element) {
+            items.append(item)
+        }
+        mutating func pop() -> Element {
+            return items.removeLast()
+        }
     }
     
     func enumerations(){
@@ -57,7 +89,7 @@ struct ContentView: View {
             print("hd")
         }
     }
-
+    
     
     func callCaptureValuesFromHere(){
         let incrementBySeven = capturingValues(forIncrement: 7)
